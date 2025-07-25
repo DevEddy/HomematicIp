@@ -23,6 +23,7 @@ namespace HomematicIp.Services
         protected string UrlWebSocket;
         protected StringContent ClientCharacteristicsStringContent;
         protected const string CLIENTAUTH = "CLIENTAUTH";
+        protected const string ACCESSPOINT_ID = "ACCESSPOINT-ID";
 
         private readonly ClientCharacteristics _clientCharacteristics;
         protected HomematicServiceBase(Func<HttpClient> httpClientFactory, HomematicConfiguration homematicConfiguration, ClientCharacteristics clientCharacteristics = null)
@@ -59,6 +60,8 @@ namespace HomematicIp.Services
                 HttpClient.DefaultRequestHeaders.Add("VERSION", "12");
             if (!HttpClient.DefaultRequestHeaders.Contains(CLIENTAUTH))
                 HttpClient.DefaultRequestHeaders.Add(CLIENTAUTH, ClientAuthToken);
+            if (!HttpClient.DefaultRequestHeaders.Contains(ACCESSPOINT_ID))
+                HttpClient.DefaultRequestHeaders.Add(ACCESSPOINT_ID, HomematicConfiguration.AccessPointId);
             UrlWebSocket = restAndWebSocketUrls.UrlWebSocket;
         }
 

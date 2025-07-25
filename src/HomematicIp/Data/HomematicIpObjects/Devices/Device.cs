@@ -17,7 +17,7 @@ namespace HomematicIp.Data.HomematicIpObjects.Devices
         public string SerializedGlobalTradeItemNumber { get; set; }
         public string ModelType { get; set; }
         public int ModelId { get; set; }
-        public int FirmwareVersionInteger { get; set; }
+        public int? FirmwareVersionInteger { get; set; }
         public int ManufacturerCode { get; set; }
         public string Oem { get; set; }
         public string DeviceArchetype { get; set; }

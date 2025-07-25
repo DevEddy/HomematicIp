@@ -43,9 +43,12 @@ namespace HomematicIp.Services
 
             if (!HttpClient.DefaultRequestHeaders.Contains(AUTHTOKEN))
                 HttpClient.DefaultRequestHeaders.Add(AUTHTOKEN, HomematicConfiguration.AuthToken);
-
+            if (!HttpClient.DefaultRequestHeaders.Contains(ACCESSPOINT_ID))
+                HttpClient.DefaultRequestHeaders.Add(ACCESSPOINT_ID, HomematicConfiguration.AccessPointId);
+            
             _clientWebSocket.Options.SetRequestHeader(AUTHTOKEN, HomematicConfiguration.AuthToken);
             _clientWebSocket.Options.SetRequestHeader(CLIENTAUTH, ClientAuthToken);
+            _clientWebSocket.Options.SetRequestHeader(ACCESSPOINT_ID, HomematicConfiguration.AccessPointId);
         }
 
         public async Task ConnectAsync(CancellationToken cancellationToken = default)
@@ -59,7 +62,8 @@ namespace HomematicIp.Services
             if (httpResponseMessage.IsSuccessStatusCode)
             {
                 var content = await httpResponseMessage.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<HomematicIpEnvironment>(content);
+                var json = JsonConvert.DeserializeObject<HomematicIpEnvironment>(content);
+                return json;
             }
             throw new ArgumentException($"Request failed: {httpResponseMessage.ReasonPhrase}");
         }
@@ -817,6 +821,10 @@ namespace HomematicIp.Services
                         try
                         {
                             var result = await _clientWebSocket.ReceiveAsync(new ArraySegment<byte>(buffer), cancellationToken);
+                            
+                            System.Diagnostics.Debug.WriteLine("WebSocket message received: " + result.MessageType);
+                            System.Diagnostics.Debug.WriteLine("WebSocket message received: " + Encoding.UTF8.GetString(buffer, 0, result.Count));
+
                             switch (result.MessageType)
                             {
                                 case WebSocketMessageType.Text:

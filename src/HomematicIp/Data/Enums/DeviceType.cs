@@ -122,5 +122,7 @@ namespace HomematicIp.Data.Enums
         TEMPERATURE_HUMIDITY_SENSOR_COMPACT, // ELV-SH-CTH
         TILT_VIBRATION_SENSOR_COMPACT, // ELV-SH-CTV
         STATUS_BOARD_8, // ELV-SH-SB8
+        ACCESS_POINT, // HCU
+        PLUGIN_EXTERNAL, //HCU CCU Plugin
     }
 }
