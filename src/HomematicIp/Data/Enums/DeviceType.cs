@@ -125,5 +125,6 @@ namespace HomematicIp.Data.Enums
         ACCESS_POINT, // HCU
         PLUGIN_EXTERNAL, //HCU CCU Plugin
         HOME_CONTROL_ACCESS_POINT_TWO, //HmIP-HAP2
+        FLOOR_TERMINAL_BLOCK_8, //HmIP-FALMOT-C8
     }
 }
