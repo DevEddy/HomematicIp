@@ -124,5 +124,6 @@ namespace HomematicIp.Data.Enums
         STATUS_BOARD_8, // ELV-SH-SB8
         ACCESS_POINT, // HCU
         PLUGIN_EXTERNAL, //HCU CCU Plugin
+        HOME_CONTROL_ACCESS_POINT_TWO, //HmIP-HAP2
     }
 }
