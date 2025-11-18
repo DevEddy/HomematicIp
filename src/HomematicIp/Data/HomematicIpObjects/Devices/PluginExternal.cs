@@ -4,7 +4,7 @@
     public class PluginExternal : Device
     {
         public string ExternalService { get; set; }
-        public string? AccountLinkingId { get; set; }
+        public string AccountLinkingId { get; set; }
         // e.g de.eq3.plugin.homematic
         public string PluginId { get; set; }
         // e.g. 0034DF29B942EC:3
